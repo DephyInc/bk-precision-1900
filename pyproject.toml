@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bk_precision_1900"
-version = "1.0.1"
+version = "1.1.0"
 description = "Control the BK Precision 1900 series power supplies"
 readme = "README.md"
 requires-python = ">=3.12"
