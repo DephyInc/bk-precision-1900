@@ -5,7 +5,9 @@ from bk_precision_1900.bk1902b import BK1902B
 
 
 def main() -> None:
-    parser = argparse.ArgumentParser(description="Minimal demo of BK1902B library usage")
+    parser = argparse.ArgumentParser(
+        description="Minimal demo of BK1902B library usage"
+    )
     parser.add_argument(
         "port",
         help="Serial port path (e.g., /dev/ttyUSB0 or COM3)",

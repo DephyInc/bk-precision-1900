@@ -3,8 +3,8 @@ requires = ["setuptools>=75", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "bk_precision_1900"
-version = "1.1.0"
+name = "bk-precision-1900"
+version = "1.1.1"
 description = "Control the BK Precision 1900 series power supplies"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -25,25 +25,18 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/DephyInc/bk_precision_1900"
-Repository = "https://github.com/DephyInc/bk_precision_1900"
-Issues = "https://github.com/DephyInc/bk_precision_1900/issues"
+Homepage = "https://github.com/DephyInc/bk-precision-1900"
+Repository = "https://github.com/DephyInc/bk-precision-1900"
+Issues = "https://github.com/DephyInc/bk-precision-1900/issues"
 
+# SINGLE scripts table — keep only this one
 [project.scripts]
-bk1902b = "bk1902b:main"
+bk1902b = "bk_precision_1900.bk1902b:main"
 
-# Single-module project layout: bk1902b.py at the repo root
-[tool.setuptools]
-py-modules = ["bk1902b"]
-
-# Optional dev extras: install with `pip install .[dev]`
-[project.optional-dependencies]
-dev = [
-  "ruff>=0.6.9",
-  "mypy>=1.11.2",
-  "pytest>=8.3.0",
-  "pytest-cov>=5.0.0",
-]
+# Package discovery for your src layout
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["bk_precision_1900*"]
 
 # -----------------------------
 # Ruff: formatter + linter
@@ -51,6 +44,7 @@ dev = [
 [tool.ruff]
 line-length = 100
 target-version = "py312"
+extend-safe-fixes = true
 
 [tool.ruff.format]
 quote-style = "double"
@@ -59,16 +53,14 @@ skip-magic-trailing-comma = false
 docstring-code-format = true
 
 [tool.ruff.lint]
-# E,F = pycodestyle/pyflakes, I = isort, B = bugbear, UP = pyupgrade
 select = ["E", "F", "I", "B", "UP"]
 ignore = []
-extend-safe-fixes = ["ALL"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["bk_precision_1900", "bk1902b"]
 
 # -----------------------------
-# mypy: static type checking
+# mypy
 # -----------------------------
 [tool.mypy]
 python_version = "3.12"
@@ -81,14 +73,6 @@ disallow_any_generics = true
 no_implicit_optional = true
 strict_equality = true
 
-# PySerial does not ship full type info
 [[tool.mypy.overrides]]
 module = ["serial", "serial.*"]
 ignore_missing_imports = true
-
-# -----------------------------
-# Pytest
-# -----------------------------
-[tool.pytest.ini_options]
-addopts = "-ra -q"
-testpaths = ["tests"]
