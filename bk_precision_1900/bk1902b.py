@@ -51,9 +51,7 @@ class BK1902B:
     def open(self) -> None:
         """Open the serial port."""
         try:
-            self.ser = serial.Serial(
-                self.port, baudrate=self.baud, timeout=self.timeout
-            )
+            self.ser = serial.Serial(self.port, baudrate=self.baud, timeout=self.timeout)
         except serial.SerialException as err:
             raise RuntimeError(f"Serial port {self.port} unavailable") from err
 
@@ -200,13 +198,9 @@ class BK1902B:
 
 
 def _add_common_args(p: argparse.ArgumentParser) -> None:
-    p.add_argument(
-        "--port", required=True, help="Serial port, for example COM3 or /dev/ttyUSB0"
-    )
+    p.add_argument("--port", required=True, help="Serial port, for example COM3 or /dev/ttyUSB0")
     p.add_argument("--baud", type=int, default=9600, help="Baud rate")
-    p.add_argument(
-        "--timeout", type=float, default=1.0, help="Serial read timeout in seconds"
-    )
+    p.add_argument("--timeout", type=float, default=1.0, help="Serial read timeout in seconds")
 
 
 def _cmd_set_voltage(args: argparse.Namespace) -> int:

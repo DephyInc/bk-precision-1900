@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "bk-precision-1900"
-version = "1.1.1"
+version = "1.1.2"
 description = "Control the BK Precision 1900 series power supplies"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -44,7 +44,6 @@ include = ["bk_precision_1900*"]
 [tool.ruff]
 line-length = 100
 target-version = "py312"
-extend-safe-fixes = true
 
 [tool.ruff.format]
 quote-style = "double"
@@ -55,6 +54,7 @@ docstring-code-format = true
 [tool.ruff.lint]
 select = ["E", "F", "I", "B", "UP"]
 ignore = []
+extend-safe-fixes = ["ALL"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["bk_precision_1900", "bk1902b"]
